@@ -5,6 +5,7 @@ describe("Home page", () => {
   beforeEach(async () => {
     await HomePage.openSiiPage();
   });
+
   it("should go through main navbar menu", async () => {
     await HomePage.clickWhoWeAreButton();
     await HomePage.checkCompanyPresentationTextDisplayed();
@@ -57,11 +58,26 @@ describe("Home page", () => {
     await HomePage.checkTextLargeContentIcon("Embedded systems");
   });
 
-  it.only("should check main webpage titles", async () => {
+  it("should check main webpage titles", async () => {
     await HomePage.moveToAreasOfSpecializationTitle();
     await HomePage.moveToDontMissOutTitle();
     await HomePage.moveToLearnMoreAboutUsTitle();
     await HomePage.moveToWeProudToWorkWithTitle();
     await HomePage.moveToWhoWeAreTitle();
+  });
+
+  // it.only("should test carrousel for we proud to work with", async () => {
+  //   await HomePage.moveToReadThisStoryButton();
+  //   await HomePage.checkWeProudToWorkWithCarrousel();
+  // });
+
+  it("should test email input error", async () => {
+    await HomePage.moveToDontMissOutTitle();
+    await HomePage.clickSubscribeButton();
+    await HomePage.checkEmailInputErrorDisplayed();
+
+    await HomePage.typeWrongEmailToInput();
+    await HomePage.clickSubscribeButton();
+    await HomePage.checkEmailInputErrorDisplayed();
   });
 });

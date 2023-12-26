@@ -1,6 +1,7 @@
 import { $ } from "@wdio/globals";
 import { expect } from "@wdio/globals";
 import Page from "./page";
+// import * as assert from "assert";
 
 class Home extends Page {
   private get siiMainLogo() {
@@ -25,6 +26,10 @@ class Home extends Page {
 
   private get kontaktButton() {
     return $("=Kontakt");
+  }
+
+  private get searchIcon() {
+    return $(`//*[@id="menu-main-menu"]/li[9]`);
   }
 
   // private get sendYourRequestButton() {
@@ -61,6 +66,10 @@ class Home extends Page {
 
   private get dontMissOutTitle() {
     return $("h2=Don't miss out");
+  }
+
+  private get digitalizedTextbooksNorwayTitle() {
+    return $("h3=Digitalized textbooks for students in Norway");
   }
   /////////////////////////////////////
 
@@ -142,6 +151,22 @@ class Home extends Page {
     return $("#offer_menu_item2 span.sii-m-badge-menu-item__link__title");
   }
 
+  private get readThisStoryButton() {
+    return $("a=Read this story");
+  }
+
+  private get emailInputError() {
+    return $("#Zebra_Form_error_message_email");
+  }
+
+  private get subscribeButton() {
+    return $("#submit_btn");
+  }
+
+  private get emailInput() {
+    return $("input#email");
+  }
+
   public clickSiiMainLogo() {
     return this.siiMainLogo.click();
   }
@@ -192,6 +217,18 @@ class Home extends Page {
     return this.blogButton.click();
   }
 
+  public clickSubscribeButton() {
+    return this.subscribeButton.click();
+  }
+
+  public clickSearchIcon() {
+    return this.searchIcon.click();
+  }
+
+  public async typeWrongEmailToInput() {
+    return this.typeToInput(await this.emailInput, "test");
+  }
+
   public checkCompanyPresentationTextDisplayed() {
     return expect(this.ourCompanyTitle).toBeDisplayed();
   }
@@ -236,12 +273,20 @@ class Home extends Page {
     return expect(this.welcomeToMySiiTitle).toBeDisplayed();
   }
 
+  public checkEmailInputErrorDisplayed() {
+    return expect(this.emailInputError).toBeDisplayed();
+  }
+
   public async hoverOnEmbeddedSystemsText() {
     await this.embeddedSystemsText.moveTo();
   }
 
   public checkTextLargeContentIcon(val: string) {
     return expect(this.largeContentIcon).toHaveText(val);
+  }
+
+  public isTextbooksNorwayTitleDisplayed() {
+    return this.digitalizedTextbooksNorwayTitle.isDisplayed();
   }
 
   public async moveToAreasOfSpecializationTitle() {
@@ -268,6 +313,31 @@ class Home extends Page {
     await this.dontMissOutTitle.moveTo();
     await expect(this.dontMissOutTitle).toBeDisplayed();
   }
+
+  public async moveToReadThisStoryButton() {
+    // workaround, it scrolls there but there is "out of bounds" error
+    try {
+      await this.readThisStoryButton.moveTo();
+    } catch (error) {
+      console.log(error);
+    }
+    await expect(this.readThisStoryButton).toBeDisplayed();
+  }
+
+  // public async checkWeProudToWorkWithCarrousel() {
+  //   // if books Norway displayed all the time then it is not working
+  //   let a = await this.isTextbooksNorwayTitleDisplayed();
+  //   await browser.pause(15000);
+  //   let b = await this.isTextbooksNorwayTitleDisplayed();
+  //   await browser.pause(15000);
+  //   let c = await this.isTextbooksNorwayTitleDisplayed();
+
+  //   await console.log(a, b, c);
+
+  //   if (a === true && b === true && c === true) {
+  //     return assert.fail("Carrousel is not working");
+  //   }
+  // }
 }
 
 export default new Home();

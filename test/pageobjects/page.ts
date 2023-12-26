@@ -12,4 +12,9 @@ export default class Page {
       await this.acceptCookiesButton.click();
     }
   }
+
+  protected async typeToInput(element: WebdriverIO.Element, text: string) {
+    await element.waitForDisplayed();
+    await element.setValue(text);
+  }
 }
