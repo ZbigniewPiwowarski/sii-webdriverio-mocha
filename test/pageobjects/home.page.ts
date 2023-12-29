@@ -46,6 +46,8 @@ class Home extends Page {
     );
   }
 
+  //asdasdasdasd
+
   // titles ///////////////////////////
 
   private get areasOfSpecializationTitle() {

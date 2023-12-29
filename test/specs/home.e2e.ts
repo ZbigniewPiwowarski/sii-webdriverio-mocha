@@ -78,5 +78,5 @@ describe("Home page", () => {
     await HomePage.typeWrongEmailToInput();
     await HomePage.clickSubscribeButton();
     await HomePage.checkEmailInputErrorDisplayed();
-  });
+  }); 
 });
