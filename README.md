@@ -9,3 +9,5 @@
 
 # running tests
 - in repository root directory run command "npm run wdio"
+
+- # git fetch test
