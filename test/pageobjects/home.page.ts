@@ -2,6 +2,7 @@ import { $ } from "@wdio/globals";
 import { expect } from "@wdio/globals";
 import Page from "./page";
 // import * as assert from "assert";
+const assert = require("soft-assert");
 
 class Home extends Page {
   private get siiMainLogo() {
@@ -130,10 +131,12 @@ class Home extends Page {
   // news and events //////////////////
   private get newAndEventsButton() {
     return $(`//*[@id="sii-m-nav-menu__item--19245"]/a`);
+    //return $("#sii-m-nav-menu__item--19245 a")
   }
 
   private get newsTitle() {
     return $(`//*[@id="js-main-menu-19245"]//*[contains(text(), "News")]`);
+    //("#js-main-menu-19245*=News")
   }
   /////////////////////////////////////
 
@@ -229,12 +232,24 @@ class Home extends Page {
     return this.typeToInput(await this.emailInput, "test");
   }
 
-  public checkCompanyPresentationTextDisplayed() {
-    return expect(this.ourCompanyTitle).toBeDisplayed();
+  public async checkCompanyPresentationTextDisplayed() {
+    assert.softAssert(
+      await this.ourCompanyTitle.isDisplayed(),
+      true,
+      "Our company title is not displayed"
+    );
+
+    //return expect(this.ourCompanyTitle).toBeDisplayed();
   }
 
-  public checkOurServicesTextDisplayed() {
-    return expect(this.ourServicesTitle).toBeDisplayed();
+  public async checkOurServicesTextDisplayed() {
+    //return expect(this.ourServicesTitle).toBeDisplayed();
+
+    assert.softAssert(
+      await this.ourServicesTitle.isDisplayed(),
+      true,
+      "Our service title is not displayed"
+    );
   }
 
   public checkHealthcareTextDisplayed() {
