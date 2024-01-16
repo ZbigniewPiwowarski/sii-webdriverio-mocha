@@ -1,10 +1,12 @@
 import HomePage from "../pageobjects/home.page";
+const assert = require("soft-assert");
 
 describe("Home page", () => {
   beforeEach(async () => {
     await HomePage.openSiiPage();
   });
 
+  //for (let i = 0; i < 5; i++) {
   it("should go through main navbar menu", async () => {
     await HomePage.clickWhoWeAreButton();
     await HomePage.checkCompanyPresentationTextDisplayed();
@@ -26,7 +28,10 @@ describe("Home page", () => {
 
     await HomePage.clickBlogButton();
     await HomePage.checkBlogUrl();
+
+    await assert.softAssertAll();
   });
+  //  }
 
   it("should change language to English and back to Polish", async () => {
     await HomePage.openSiiPage();
