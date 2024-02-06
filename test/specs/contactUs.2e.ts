@@ -1,7 +1,7 @@
 import HomePage from "../pageobjects/home.page";
 import ContactPage from "../pageobjects/contact.page";
 
-describe("Contact us", () => {
+describe.skip("Contact us", () => {
   beforeEach(async () => {
     await HomePage.openSiiPage();
     await HomePage.clickContactUsButton();

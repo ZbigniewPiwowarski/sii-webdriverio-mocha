@@ -13,6 +13,10 @@ export default class Page {
     }
   }
 
+  public async openbankierPage() {
+    await browser.url("https://www.bankier.pl/");
+  }
+
   protected async typeToInput(element: WebdriverIO.Element, text: string) {
     await element.waitForDisplayed();
     await element.setValue(text);

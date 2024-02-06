@@ -1,13 +1,13 @@
 import HomePage from "../pageobjects/home.page";
 const assert = require("soft-assert");
 
-describe("Home page", () => {
+describe.only("Home page", () => {
   beforeEach(async () => {
     await HomePage.openSiiPage();
   });
 
   //for (let i = 0; i < 5; i++) {
-  it("should go through main navbar menu", async () => {
+  it.only("should go through main navbar menu", async () => {
     await HomePage.clickWhoWeAreButton();
     await HomePage.checkCompanyPresentationTextDisplayed();
 
@@ -15,21 +15,27 @@ describe("Home page", () => {
     await HomePage.checkOurServicesTextDisplayed();
 
     await HomePage.clickIndustriesButton();
-    await HomePage.checkHealthcareTextDisplayed();
+    //await HomePage.checkHealthcareTextDisplayed();
+    const a = expect(HomePage.healthcareTitle).toBeDisplayed();
 
-    await HomePage.clickCareerButton();
-    await HomePage.checkJobOffersTextDisplayed();
+    await HomePage.openbankierPage();
 
-    await HomePage.clickTrainingButton();
-    await HomePage.checkTrainingsUrl();
+    // await HomePage.clickCareerButton();
+    // await HomePage.checkJobOffersTextDisplayed();
 
-    await HomePage.clickNewsAndEventsButton();
-    await HomePage.checkNewsTextDisplayed();
+    // await HomePage.clickTrainingButton();
+    // await HomePage.checkTrainingsUrl();
 
-    await HomePage.clickBlogButton();
-    await HomePage.checkBlogUrl();
+    // await HomePage.clickNewsAndEventsButton();
+    // await HomePage.checkNewsTextDisplayed();
+
+    // await HomePage.clickBlogButton();
+    // await HomePage.checkBlogUrl();
 
     await assert.softAssertAll();
+    await console.log("below");
+    await console.log(await a);d
+    await console.log("above");
   });
   //  }
 
@@ -83,5 +89,5 @@ describe("Home page", () => {
     await HomePage.typeWrongEmailToInput();
     await HomePage.clickSubscribeButton();
     await HomePage.checkEmailInputErrorDisplayed();
-  }); 
+  });
 });

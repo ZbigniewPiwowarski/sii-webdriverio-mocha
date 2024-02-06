@@ -105,7 +105,7 @@ class Home extends Page {
     return $(`//*[@id="sii-m-nav-menu__item--19242"]/a`);
   }
 
-  private get healthcareTitle() {
+  get healthcareTitle() {
     return $(
       `//*[@id="js-main-menu-19242"]//*[contains(text(), "Healthcare")]`
     );
